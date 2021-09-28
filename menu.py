@@ -19,11 +19,12 @@ class Menu():
                         print('This is not a valid option!')
                     else:
                         a = self.user_team.win_loss_ratio(user_option_sub_menu)
-                        self.user_team.data_visual.piechart_win_loss_ratio(a[0], a[1], a[3])   
+                        self.user_team.data_visual.piechart_win_loss_ratio(a[0], a[1], a[3])
                 except (TypeError, ValueError) as e:
                     print('Not a valid option. Choose again')
                     continue
             elif user_option_main_menu == '2':
+                self.divison_comparison()
                 continue
             elif user_option_main_menu == '3':
                 a = self.user_team.monthly_win_loss()
