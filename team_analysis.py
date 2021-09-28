@@ -52,7 +52,7 @@ class Team():
         # creating a list of win/loss ratios for each division
         division_list = []
         for i in range(6,12):
-            division_win_loss = self.win_loss_ratio(i,False)[2]
+            division_win_loss = self.win_loss_ratio(i)[2]
             division_list.append(division_win_loss)
 
         # manually creating a list of the official division names
@@ -68,7 +68,7 @@ class Team():
         list_number_games = []
         number_games = []
         for i in range(6,12):
-            number_games = self.win_loss_ratio(i,False)[0] + self.win_loss_ratio(i,False)[1]
+            number_games = self.win_loss_ratio(i)[0] + self.win_loss_ratio(i)[1]
             list_number_games.append(number_games)
 
         print("")
@@ -78,7 +78,7 @@ class Team():
         print("")
 
         # looping for the 6 different divisions
-        print(f"The {team_name} played a total of :")
+        print(f"The {self.team_name} played a total of :")
         print("")
         for i in range(6):
             print('\t' * 1 + f"{list_number_games[i]} games in the {division_list_names[i]} division")

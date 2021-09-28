@@ -24,7 +24,7 @@ class Menu():
                     print('Not a valid option. Choose again')
                     continue
             elif user_option_main_menu == '2':
-                self.divison_comparison()
+                self.user_team.divison_comparison()
                 continue
             elif user_option_main_menu == '3':
                 a = self.user_team.monthly_win_loss()
