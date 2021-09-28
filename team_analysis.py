@@ -29,7 +29,7 @@ class Team():
         self.data_visual = ShowData()
 
     def win_loss_ratio(self,category):
-        
+
         #get only the row of the chosen team
         category_value = self.team_row.iat[0,category]
         wins = int(category_value.split('-')[0])
@@ -38,7 +38,7 @@ class Team():
         #print(f'The {self.dictionary[category]} win/loss ratio of {self.team_name} is {win_loss_ratio}%!')
         title = f'  Win/loss ratio in {self.dictionary[category]} category of {self.team_name}'
 
-        # return wins and losses 
+        # return wins and losses
         return wins,loses,win_loss_ratio,title
 
     def monthly_win_loss(self):
@@ -48,8 +48,45 @@ class Team():
             months.append(month)
         return months
 
+    def divison_comparison(self):
+        # creating a list of win/loss ratios for each division
+        division_list = []
+        for i in range(6,12):
+            division_win_loss = self.win_loss_ratio(i,False)[2]
+            division_list.append(division_win_loss)
+
+        # manually creating a list of the official division names
+        division_list_names = ["Atlantic","Central","South-East","North-West","Pacific","South-West"]
+
+        position_max = division_list.index(max(division_list))
+        position_min = division_list.index(min(division_list))
+        # fetching the corresponding Division name of the min/max win/loss ratio
+        name_position_max = division_list_names[position_max]
+        name_position_min = division_list_names[position_min]
+
+        # creating a list of the total number of games per division, for one team (ex:[10,8,7,15,12,9])
+        list_number_games = []
+        number_games = []
+        for i in range(6,12):
+            number_games = self.win_loss_ratio(i,False)[0] + self.win_loss_ratio(i,False)[1]
+            list_number_games.append(number_games)
+
+        print("")
+        print("The highest win/loss ratio was",max(division_list),"%", f"and it was in the {name_position_max} division")
+        print("")
+        print("The lowest win/loss ratio was",min(division_list),"%", f"and it was in the {name_position_min} division")
+        print("")
+
+        # looping for the 6 different divisions
+        print(f"The {team_name} played a total of :")
+        print("")
+        for i in range(6):
+            print('\t' * 1 + f"{list_number_games[i]} games in the {division_list_names[i]} division")
+            print("")
+
+            
 class ShowData():
-    
+
     #Define a function to create a piechart based on wins and losses in any category
     def piechart_win_loss_ratio(self, wins ,loses,title):
         labels = 'Wins', 'Losses'
@@ -72,9 +109,3 @@ class ShowData():
         plt.xticks(x,x_text)
         plt.plot(x,y)
         plt.savefig('plots.png')
-        
-
-
-
-
-
