@@ -10,12 +10,12 @@ class Team():
     def __init__(self):
 
         while True:
-            self.team_name = input("Team name: ").title()
+            self.team_name = input("Please enter a team name: ").title()
             self.data = pd.read_csv("nba_test.csv")
             self.data = self.data.fillna('1-100')
             self.team_row=self.data.loc[self.data['Team']== self.team_name]
 
-            print(self.team_row)
+            #print(self.team_row)
 
             if len(self.team_row) == 0:
                 print('This is not a valid team name!')
@@ -43,6 +43,7 @@ class Team():
 
     def monthly_win_loss(self):
         months = []
+        new_range = 
         for i in range(16,24):
             month = self.win_loss_ratio(i)[2]
             months.append(month)

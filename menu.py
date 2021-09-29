@@ -8,7 +8,7 @@ class Menu():
 
     def user_menu(self):
         while True:
-            print('What metric do you want to see? \n 1. Win/loss ratio \n 2. Conference statistics \n 3. Division statistics \n 4. All-Star statistics \n 5. Game margin statistics \n 6. Monthly graph \n 7. Game result predictor \n\n OR type Q to quit \n')
+            print('\n What metric do you want to see? \n\n 1. Win/loss ratio \n 2. Conference statistics \n 3. Division statistics \n 4. All-Star statistics \n 5. Game margin statistics \n 6. Monthly graph \n\n OR enter 7 if you want to access the Game Result Predictor \n\n OR type Q to quit \n')
             user_option_main_menu = input("What option are you choosing? ").lower()
 
             if user_option_main_menu == '1':

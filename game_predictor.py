@@ -5,7 +5,7 @@ class GamePredictor():
     def __init__(self):
         #data = pd.read_csv("nba_test.csv")
         self.team=Team()
-        self.game=input('Where does the first team play? \n 1. Home \n 2. Road \n ')
+        self.game=input('Where does the first team play? \n 1. Home \n 2. Road \n' )
         self.opp_team = input("Enter the opposing team: ").title()
 
         self.team.data['Wins']=pd.to_numeric(self.team.data.Overall.str.split('-',expand=True)[0])
@@ -27,7 +27,7 @@ class GamePredictor():
         self.team_data = (self.team.data[self.team.data.Team == self.team.team_name])
         #print(self.team_data)
         self.opp_team_data = (self.team.data[self.team.data.Team == self.opp_team])
-        print(self.opp_team_data)
+        #print(self.opp_team_data)
         self.c = 0
         #quit()
         #data = pd.read_csv("nba_test.csv"
@@ -36,11 +36,10 @@ class GamePredictor():
 
         if self.game == '1':
             self.c = (self.team_data['Home Success Ratio'].values + self.opp_team_data['Road Loses Ratio'].values) - (self.team_data['Home Success Ratio'].values * self.opp_team_data['Road Loses Ratio'].values)
-                # print(team_name, c)
             
         elif self.game == '2':
             self.c = (self.team_data['Road Success Ratio'].values + self.opp_team_data['Home Loses Ratio'].values) - (self.team_data['Road Success Ratio'].values * self.opp_team_data['Home Loses Ratio'].values)
             
-        print(f'{self.team.team_name} will win with probability  {self.c*100} %')
+        print(f'{self.team.team_name} will win with a probability of {self.c*100} % against {self.opp_team}!')
 
       
