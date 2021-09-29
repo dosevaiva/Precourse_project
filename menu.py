@@ -4,7 +4,17 @@ from team_analysis import *
 class Menu():
 
     def __init__(self):
-        self.user_team = Team()
+        #put this is menu
+        while True:
+            self.team_name = input("Please enter a team name: ").title()
+            self.user_team = Team(self.team_name)
+            #print(self.team_row)
+
+            if len(self.user_team.team_row) == 0:
+                print('This is not a valid team name!')
+                continue
+            else:
+                break
 
     def user_menu(self):
         while True:
@@ -42,7 +52,10 @@ class Menu():
                 self.user_team.data_visual.linechart(a, elements)
                 continue
             elif user_option_main_menu == '7':
-                predict= GamePredictor()
+
+                game=input('Where does the first team play? \n 1. Home \n 2. Road \n' )
+                opp_team = input("Enter the opposing team: ").title()
+                predict= GamePredictor(self.user_team, game, opp_team)
                 predict.predict()
                 continue
             elif user_option_main_menu =='q':

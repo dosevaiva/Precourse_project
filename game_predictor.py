@@ -2,11 +2,11 @@ import pandas as pd
 from  team_analysis import *
  
 class GamePredictor():
-    def __init__(self):
+    def __init__(self,team, game, opp_team):
+        self.team=team
+        self.game =game
+        self.opp_team =opp_team
         #data = pd.read_csv("nba_test.csv")
-        self.team=Team()
-        self.game=input('Where does the first team play? \n 1. Home \n 2. Road \n' )
-        self.opp_team = input("Enter the opposing team: ").title()
 
         self.team.data['Wins']=pd.to_numeric(self.team.data.Overall.str.split('-',expand=True)[0])
         self.team.data['Loses']=pd.to_numeric(self.team.data.Overall.str.split('-',expand=True)[1])
@@ -39,7 +39,7 @@ class GamePredictor():
             
         elif self.game == '2':
             self.c = (self.team_data['Road Success Ratio'].values + self.opp_team_data['Home Loses Ratio'].values) - (self.team_data['Road Success Ratio'].values * self.opp_team_data['Home Loses Ratio'].values)
-            
-        print(f'{self.team.team_name} will win with a probability of {self.c*100} % against {self.opp_team}!')
+        
+        print(f'{self.team.team_name} will win with a probability of {round(self.c[0],2)*100} % against {self.opp_team}!')
 
       

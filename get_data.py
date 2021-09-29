@@ -21,15 +21,15 @@ class GetData():
         source=requests.get(url).text
         soup=BeautifulSoup(source, 'lxml')
 
-        file=open('html_code.html','w')
+        file=open('html_code.html','w', encoding='UTF-8')
         file.write(soup.prettify())
         file.close
 
     def replace(self):
-        with open('html_code.html', 'r') as html_file:
+        with open('html_code.html', 'r', encoding='UTF-8') as html_file:
             file_content = html_file.read()
             file_content= file_content.replace(" <!--", "")
-        with open('html_code.html', 'w') as html_file:
+        with open('html_code.html', 'w', encoding='UTF-8') as html_file:
             html_file.write(file_content)
             
     def find_table(self,html_file):
@@ -42,7 +42,7 @@ class GetData():
         headers = []
         #find all headings
         for i in table.thead.find('tr', class_=False):
-            title=i.text.strip()
+            title=i.string.strip()
             headers.append(title)
 
             # remove the Rk heading
@@ -69,10 +69,10 @@ class GetData():
 
     def create_csv(self):
         #open the file
-        with open('html_code.html') as html_file:
+        with open('html_code.html', encoding='UTF-8') as html_file:
             table = self.find_table(html_file)
             headers = self.get_headers(table)
-            csv_file = open('nba_test.csv', 'w')
+            csv_file = open('nba_test.csv', 'w', encoding='UTF-8')
             #create a writer
             csv_writer = csv.writer(csv_file)
             #write the headings to the csv file

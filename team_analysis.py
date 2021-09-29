@@ -7,27 +7,15 @@ import numpy as np
 #define a class Team, which takes team name and performes the analysis
 class Team():
 
-    def __init__(self):
-
-        while True:
-            self.team_name = input("Please enter a team name: ").title()
-            self.data = pd.read_csv("nba_test.csv")
-            self.data = self.data.fillna('1-100')
-            self.team_row=self.data.loc[self.data['Team']== self.team_name]
-        
-
-            #print(self.team_row)
-
-            if len(self.team_row) == 0:
-                print('This is not a valid team name!')
-                continue
-            else:
-                break
-
+    def __init__(self, team_name):
+        self.team_name=team_name
         self.dictionary ={1: 'Overall', 2:'Home', 3:'Road', 4:'E', 5:'W',6:'A', 7:'C',8:'SE', 9:'NW', 10:'P',11:'SW', 12:'Pre' , 13:'Post', 14:'≤3', 15:'≥10', 16:'Oct', 17:'Nov', 18:'Dec', 19:'Jan', 20:'Feb', 21:'Mar', 22:'Jul', 23:'Aug'}
         self.user_input = None
         self.user_option = None
         self.data_visual = ShowData()
+        self.data = pd.read_csv("nba_test.csv")
+        self.data = self.data.fillna('1-100')
+        self.team_row=self.data.loc[self.data['Team']== self.team_name]
 
     def win_loss_ratio(self,category):
 
@@ -39,13 +27,11 @@ class Team():
         #print(f'The {self.dictionary[category]} win/loss ratio of {self.team_name} is {win_loss_ratio}%!')
         title = f'  Win/loss ratio in {self.dictionary[category]} category of {self.team_name}'
 
-        # return wins and losses
         return wins,loses,win_loss_ratio,title
 
     def monthly_win_loss(self):
         months = []
         end_range = len(self.team_row.columns)
-        print(end_range)
         for i in range(16, end_range):
             month = self.win_loss_ratio(i)[2]
             months.append(month)
