@@ -7,7 +7,7 @@ class Menu():
 
     def user_menu(self):
         while True:
-            print('What metric do you want to see? \n 1. Win/loss ratio \n 2. Division statistics \n 3. Monthly graph \n 4. Conference statistics \n 5. Game result predictor \n\n OR type Q to quit \n')
+            print('What metric do you want to see? \n 1. Win/loss ratio \n 2. Conference statistics \n 3. Division statistics \n 4. All-Star statistics \n 5. Game margin statistics \n 6. Monthly graph \n 7. Game result predictor \n\n OR type Q to quit \n')
             user_option_main_menu = input("What option are you choosing? ").lower()
 
             if user_option_main_menu == '1':
@@ -24,16 +24,22 @@ class Menu():
                     print('Not a valid option. Choose again')
                     continue
             elif user_option_main_menu == '2':
-                self.user_team.divison_statistics()
+                self.user_team.conference_statistics()
                 continue
             elif user_option_main_menu == '3':
+                self.user_team.division_statistics()
+                continue
+            elif user_option_main_menu == '4':
+                self.user_team.all_star_statistics()
+                continue
+            elif user_option_main_menu == '5':
+                self.user_team.game_margin_statistics()
+                continue
+            elif user_option_main_menu == '6':
                 a = self.user_team.monthly_win_loss()
                 self.user_team.data_visual.linechart(a)
                 continue
-            elif user_option_main_menu == '4':
-                self.user_team.conference_statistics()
-                continue
-            elif user_option_main_menu == '5':
+            elif user_option_main_menu == '7':
                 continue
             elif user_option_main_menu =='q':
                 quit()
