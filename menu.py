@@ -58,12 +58,26 @@ class Menu():
                 elements = len(self.user_team.team_row.columns)
                 self.user_team.data_visual.linechart(a, elements)
                 continue
+            elif user_option_main_menu == '7':
+                while True:
+                    game=input('Where does the first team play? \n 1. Home \n 2. Road \n' )
+                    if game == '1' or game == '2':
+                        break
+                    else:
+                        print('This is not a valid option! Try again!')
+                        continue
 
-            elif user_option_main_menu == '4':
+                while True:
+                    opp_team = input("Enter the opposing team: ").title()
+                    self.user_team = Team(opp_team)
+                    #print(self.team_row)
+                    if len(self.user_team.team_row) == 0:
+                        print('This is not a valid team name!')
+                        continue
+                    else:
+                        break
 
-                game = input('Where does the first team play? \n 1. Home \n 2. Road \n' )
-                opp_team = input("Enter the opposing team: ").title()
-                predict = GamePredictor(self.user_team, game, opp_team)
+                predict= GamePredictor(self.user_team, game, opp_team)
                 predict.predict()
                 continue
 
