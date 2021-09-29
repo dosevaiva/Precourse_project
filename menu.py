@@ -6,12 +6,13 @@ class Menu():
     def __init__(self):
         #put this is menu
         while True:
-            self.team_name = input("Please enter the official name of an NBA team: ").title()
+            self.team_name = input("\n Please enter the official name of an NBA team: ").title()
+            print("-----------------------------------------------------------------------------------------")
             self.user_team = Team(self.team_name)
             #print(self.team_row)
 
             if len(self.user_team.team_row) == 0:
-                print('This is not a valid team name!')
+                print(' This is not a valid team name!')
                 continue
             else:
                 break
@@ -19,60 +20,67 @@ class Menu():
     def user_menu(self):
         while True:
             print('\n What metric do you want to see? \n\n 1. Win/loss ratio \n 2. Overall statistics \n 3. Monthly graph \n\n OR enter 4 if you want to access the Game Result Predictor \n\n OR type Q to quit \n')
-            user_option_main_menu = input("What option are you choosing? ").lower()
+            user_option_main_menu = input(" Enter here the number corresponding to your choice: ").lower()
 
             if user_option_main_menu == '1':
-                print('What metric do you want to see? \n 1. Overall win ratio \n 2. Home win ratio \n 3. Road win ratio \n\n OR press any button to go back to the main menu!\n')
-                user_option_sub_menu=input('Input a number between 1 and 3: ')
+                print('\n Which win ratio do you want to see? \n\n 1. Overall \n 2. Home \n 3. Road \n\n OR press any button to go back to the main menu!\n')
+                user_option_sub_menu=input(' Input a number between 1 and 3: ')
                 try:
                     user_option_sub_menu = int(user_option_sub_menu)
                     if user_option_sub_menu < 1 or user_option_sub_menu > 3:
-                        print('This is not a valid option!')
+                        print(' This is not a valid option!')
                     else:
                         a = self.user_team.win_loss_ratio(user_option_sub_menu)
                         self.user_team.data_visual.piechart_win_loss_ratio(a[0], a[1], a[3])
+                        print("\n -> See graph in plots.png \n ")
+                        print("-----------------------------------------------------------------------------------------")
                 except (TypeError, ValueError) as e:
-                    print('Not a valid option. Choose again')
+                    print(' Not a valid option. Choose again')
                     continue
 
             elif user_option_main_menu == '2':
-                print("What category of statistics do you want to see? \n 1. Conference \n 2. Division \n 3. All-Star \n 4. Game margin")
-                print('')
-                user_option_sub_menu = input('Input a number between 1 and 4: ')
+                print("\n What category of statistics do you want to see? \n\n 1. Conference \n 2. Division \n 3. All-Star \n 4. Game margin \n")
+                user_option_sub_menu = input(' Input a number between 1 and 4: ')
                 print('')
                 try:
                     if user_option_sub_menu == '1':
                         self.user_team.conference_statistics()
+                        print("-----------------------------------------------------------------------------------------")
                     elif user_option_sub_menu == '2':
                         self.user_team.division_statistics()
+                        print("-----------------------------------------------------------------------------------------")
                     elif user_option_sub_menu == '3':
                         self.user_team.all_star_statistics()
+                        print("-----------------------------------------------------------------------------------------")
                     elif user_option_sub_menu == '4':
                         self.user_team.game_margin_statistics()
+                        print("-----------------------------------------------------------------------------------------")
                 except (TypeError, ValueError) as e:
-                    print('Not a valid option. Choose again')
+                    print(' Not a valid option. Choose again')
                     continue
 
             elif user_option_main_menu == '3':
                 a = self.user_team.monthly_win_loss()
                 elements = len(self.user_team.team_row.columns)
                 self.user_team.data_visual.linechart(a, elements)
+                print("\n -> See graph in plots.png \n ")
+                print("-----------------------------------------------------------------------------------------")
                 continue
-            elif user_option_main_menu == '7':
+            elif user_option_main_menu == '4':
                 while True:
-                    game=input('Where does the first team play? \n 1. Home \n 2. Road \n' )
+                    game=input(' Where does the first team play? (enter 1 or 2) \n 1. Home \n 2. Road \n' )
                     if game == '1' or game == '2':
                         break
                     else:
-                        print('This is not a valid option! Try again!')
+                        print(' This is not a valid option! Try again!')
                         continue
 
                 while True:
-                    opp_team = input("Enter the opposing team: ").title()
+                    opp_team = input(" Enter the opposing team name: ").title()
                     self.user_team = Team(opp_team)
                     #print(self.team_row)
                     if len(self.user_team.team_row) == 0:
-                        print('This is not a valid team name!')
+                        print(' This is not a valid team name!')
                         continue
                     else:
                         break
@@ -85,5 +93,5 @@ class Menu():
                 quit()
 
             else:
-                print("\nThis is not a valid option! Please try again!")
+                print("\n This is not a valid option! Please try again")
                 continue

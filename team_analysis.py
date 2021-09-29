@@ -61,31 +61,31 @@ class Team():
             list_number_games.append(number_games)
 
         print("")
-        print("The highest win/loss ratio was",max(division_list),"%", f"and it was in the {name_position_max} division")
+        print(" The highest win/loss ratio was",max(division_list),"%", f"and it was in the {name_position_max} division")
         print("")
-        print("The lowest win/loss ratio was",min(division_list),"%", f"and it was in the {name_position_min} division")
+        print(" The lowest win/loss ratio was",min(division_list),"%", f"and it was in the {name_position_min} division")
         print("")
 
         # looping for the 6 different divisions
-        print(f"The {self.team_name} played a total of :")
+        print(f" The {self.team_name} played a total of :")
         print("")
         for i in range(6):
             print('\t' * 1 + f"{list_number_games[i]} games in the {division_list_names[i]} division")
             print("")
 
     def conference_statistics(self):
-        # creating a list of win/loss ratios for each division
+        # creating a list of win/loss ratios for each conference
         conference_list = []
         for i in range(4,6):
             conference_win_loss = self.win_loss_ratio(i)[2]
             conference_list.append(conference_win_loss)
 
-            # manually creating a list of the official division names
+            # manually creating a list of the official conference names
             conference_list_names = ["East","West"]
 
         position_max = conference_list.index(max(conference_list))
         position_min = conference_list.index(min(conference_list))
-        # fetching the corresponding Division name of the min/max win/loss ratio
+        # fetching the corresponding conference name of the min/max win/loss ratio
         name_position_max = conference_list_names[position_max]
         name_position_min = conference_list_names[position_min]
 
@@ -97,13 +97,13 @@ class Team():
             list_number_games.append(number_games)
 
         print("")
-        print("The highest win/loss ratio was",max(conference_list),"%", f"and it was in the {name_position_max} conference")
+        print(" The highest win/loss ratio was",max(conference_list),"%", f"and it was in the {name_position_max} conference")
         print("")
-        print("The lowest win/loss ratio was",min(conference_list),"%", f"and it was in the {name_position_min} conference")
+        print(" The lowest win/loss ratio was",min(conference_list),"%", f"and it was in the {name_position_min} conference")
         print("")
 
         # looping for the 2 different conferences
-        print(f"The {self.team_name} played a total of :")
+        print(f" The {self.team_name} played a total of :")
         print("")
         for i in range(2):
             print('\t' * 1 + f"{list_number_games[i]} games in the {conference_list_names[i]} conference")
@@ -116,7 +116,7 @@ class Team():
             all_star_win_loss = self.win_loss_ratio(i)[2]
             all_star_list.append(all_star_win_loss)
 
-        # manually creating a list of the official division names
+        # manually creating a list of the official all-star names
         all_star_list_names = ["Pre All-Star Game","Post All-Star Game"]
 
         position_max = all_star_list.index(max(all_star_list))
@@ -125,7 +125,7 @@ class Team():
         name_position_max = all_star_list_names[position_max]
         name_position_min = all_star_list_names[position_min]
 
-        # creating a list of the total number of games per conference, for one team (ex:[10,8,7,15,12,9])
+        # creating a list of the total number of games for pre/post all-star, for one team (ex:[10,8,7,15,12,9])
         list_number_games = []
         number_games = []
         for i in range(12,14):
@@ -133,35 +133,32 @@ class Team():
             list_number_games.append(number_games)
 
         print("")
-        print("The highest win/loss ratio was",max(all_star_list),"%", f"and it was {name_position_max}")
+        print(" The highest win/loss ratio was",max(all_star_list),"%", f"and it was {name_position_max}")
         print("")
-        print("The lowest win/loss ratio was",min(all_star_list),"%", f"and it was {name_position_min}")
+        print(" The lowest win/loss ratio was",min(all_star_list),"%", f"and it was {name_position_min}")
         print("")
 
-        # looping for the 2 different conferences
-        print(f"The {self.team_name} played a total of :")
+        # looping for the 2 different pre/post all-star
+        print(f" The {self.team_name} played a total of :")
         print("")
         for i in range(2):
             print('\t' * 1 + f"{list_number_games[i]} games {all_star_list_names[i]}")
             print("")
 
     def game_margin_statistics(self):
-        # creating a list of win/loss ratios for pre and post All-Star game
+        # creating a list of win/loss ratios for the game margin
         game_margin_list = []
         for i in range(14,16):
             game_margin_win_loss = self.win_loss_ratio(i)[2]
             game_margin_list.append(game_margin_win_loss)
 
-        # manually creating a list of the official division names
         game_margin_list_names = ["≤3 points game margin","≥ 10 points game margin"]
 
         position_max = game_margin_list.index(max(game_margin_list))
         position_min = game_margin_list.index(min(game_margin_list))
-        # fetching the corresponding Division name of the min/max win/loss ratio
         name_position_max = game_margin_list_names[position_max]
         name_position_min = game_margin_list_names[position_min]
 
-        # creating a list of the total number of games per conference, for one team (ex:[10,8,7,15,12,9])
         list_number_games = []
         number_games = []
         for i in range(14,16):
@@ -169,13 +166,13 @@ class Team():
             list_number_games.append(number_games)
 
         print("")
-        print("The highest win/loss ratio was",max(game_margin_list),"%", f"and it was in the {name_position_max} category")
+        print(" The highest win/loss ratio was",max(game_margin_list),"%", f"and it was in the {name_position_max} category")
         print("")
-        print("The lowest win/loss ratio was",min(game_margin_list),"%", f"and it was in the {name_position_min} category")
+        print(" The lowest win/loss ratio was",min(game_margin_list),"%", f"and it was in the {name_position_min} category")
         print("")
 
         # looping for the 2 different conferences
-        print(f"The {self.team_name} played a total of :")
+        print(f" The {self.team_name} played a total of :")
         print("")
         for i in range(2):
             print('\t' * 1 + f"{list_number_games[i]} games with {game_margin_list_names[i]}")
