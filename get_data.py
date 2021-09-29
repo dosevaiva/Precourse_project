@@ -34,8 +34,9 @@ class GetData():
             
     def find_table(self,html_file):
         soup = BeautifulSoup(html_file, 'lxml')
+        #print(soup)
         table = soup.find(class_='sortable stats_table')
-        #print(table)
+        print(table)
         return table
 
     def get_headers(self,table):
@@ -71,6 +72,8 @@ class GetData():
         #open the file
         with open('html_code.html') as html_file:
             table = self.find_table(html_file)
+            print(html_file)
+            print(table)
             headers = self.get_headers(table)
             csv_file = open('nba_test.csv', 'w')
             #create a writer
@@ -86,7 +89,6 @@ class GetData():
                
         #close the file
         csv_file.close()
-
 
 
 

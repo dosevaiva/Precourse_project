@@ -1,3 +1,4 @@
+from game_predictor import GamePredictor
 from team_analysis import *
 
 class Menu():
@@ -27,7 +28,7 @@ class Menu():
                 self.user_team.conference_statistics()
                 continue
             elif user_option_main_menu == '3':
-                self.user_team.division_statistics()
+                self.user_team.divison_statistics()
                 continue
             elif user_option_main_menu == '4':
                 self.user_team.all_star_statistics()
@@ -40,6 +41,8 @@ class Menu():
                 self.user_team.data_visual.linechart(a)
                 continue
             elif user_option_main_menu == '7':
+                predict= GamePredictor()
+                predict.predict()
                 continue
             elif user_option_main_menu =='q':
                 quit()
