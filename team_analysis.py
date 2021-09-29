@@ -48,7 +48,7 @@ class Team():
             months.append(month)
         return months
 
-    def divison_comparison(self):
+    def divison_statistics(self):
         # creating a list of win/loss ratios for each division
         division_list = []
         for i in range(6,12):
@@ -84,7 +84,42 @@ class Team():
             print('\t' * 1 + f"{list_number_games[i]} games in the {division_list_names[i]} division")
             print("")
 
-            
+    def conference_statistics(self):
+        # creating a list of win/loss ratios for each division
+        conference_list = []
+        for i in range(4,6):
+            conference_win_loss = self.win_loss_ratio(i,False)[2]
+            conference_list.append(conference_win_loss)
+
+            # manually creating a list of the official division names
+            conference_list_names = ["East","West"]
+
+        position_max = conference_list.index(max(conference_list))
+        position_min = conference_list.index(min(conference_list))
+        # fetching the corresponding Division name of the min/max win/loss ratio
+        name_position_max = conference_list_names[position_max]
+        name_position_min = conference_list_names[position_min]
+
+        # creating a list of the total number of games per conference, for one team (ex:[10,8,7,15,12,9])
+        list_number_games = []
+        number_games = []
+        for i in range(4,6):
+            number_games = self.win_loss_ratio(i,False)[0] + self.win_loss_ratio(i,False)[1]
+            list_number_games.append(number_games)
+
+        print("")
+        print("The highest win/loss ratio was",max(conference_list),"%", f"and it was in the {name_position_max} conference")
+        print("")
+        print("The lowest win/loss ratio was",min(conference_list),"%", f"and it was in the {name_position_min} conference")
+        print("")
+
+        # looping for the 2 different conferences
+        print(f"The {team_name} played a total of :")
+        print("")
+        for i in range(2):
+            print('\t' * 1 + f"{list_number_games[i]} games in the {conference_list_names[i]} conference")
+            print("")
+
 class ShowData():
 
     #Define a function to create a piechart based on wins and losses in any category
