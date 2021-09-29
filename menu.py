@@ -6,7 +6,7 @@ class Menu():
     def __init__(self):
         #put this is menu
         while True:
-            self.team_name = input("Please enter a team name: ").title()
+            self.team_name = input("Please enter the official name of an NBA team: ").title()
             self.user_team = Team(self.team_name)
             #print(self.team_row)
 
@@ -18,7 +18,7 @@ class Menu():
 
     def user_menu(self):
         while True:
-            print('\n What metric do you want to see? \n\n 1. Win/loss ratio \n 2. Conference statistics \n 3. Division statistics \n 4. All-Star statistics \n 5. Game margin statistics \n 6. Monthly graph \n\n OR enter 7 if you want to access the Game Result Predictor \n\n OR type Q to quit \n')
+            print('\n What metric do you want to see? \n\n 1. Win/loss ratio \n 2. Overall statistics \n 3. Monthly graph \n\n OR enter 4 if you want to access the Game Result Predictor \n\n OR type Q to quit \n')
             user_option_main_menu = input("What option are you choosing? ").lower()
 
             if user_option_main_menu == '1':
@@ -34,32 +34,42 @@ class Menu():
                 except (TypeError, ValueError) as e:
                     print('Not a valid option. Choose again')
                     continue
+
             elif user_option_main_menu == '2':
-                self.user_team.conference_statistics()
-                continue
+                print("What category of statistics do you want to see? \n 1. Conference \n 2. Division \n 3. All-Star \n 4. Game margin")
+                print('')
+                user_option_sub_menu = input('Input a number between 1 and 4: ')
+                print('')
+                try:
+                    if user_option_sub_menu == '1':
+                        self.user_team.conference_statistics()
+                    elif user_option_sub_menu == '2':
+                        self.user_team.division_statistics()
+                    elif user_option_sub_menu == '3':
+                        self.user_team.all_star_statistics()
+                    elif user_option_sub_menu == '4':
+                        self.user_team.game_margin_statistics()
+                except (TypeError, ValueError) as e:
+                    print('Not a valid option. Choose again')
+                    continue
+
             elif user_option_main_menu == '3':
-                self.user_team.divison_statistics()
-                continue
-            elif user_option_main_menu == '4':
-                self.user_team.all_star_statistics()
-                continue
-            elif user_option_main_menu == '5':
-                self.user_team.game_margin_statistics()
-                continue
-            elif user_option_main_menu == '6':
                 a = self.user_team.monthly_win_loss()
                 elements = len(self.user_team.team_row.columns)
                 self.user_team.data_visual.linechart(a, elements)
                 continue
-            elif user_option_main_menu == '7':
 
-                game=input('Where does the first team play? \n 1. Home \n 2. Road \n' )
+            elif user_option_main_menu == '4':
+
+                game = input('Where does the first team play? \n 1. Home \n 2. Road \n' )
                 opp_team = input("Enter the opposing team: ").title()
-                predict= GamePredictor(self.user_team, game, opp_team)
+                predict = GamePredictor(self.user_team, game, opp_team)
                 predict.predict()
                 continue
+
             elif user_option_main_menu =='q':
                 quit()
+
             else:
                 print("\nThis is not a valid option! Please try again!")
                 continue

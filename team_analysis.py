@@ -37,7 +37,7 @@ class Team():
             months.append(month)
         return months
 
-    def divison_statistics(self):
+    def division_statistics(self):
         # creating a list of win/loss ratios for each division
         division_list = []
         for i in range(6,12):
@@ -203,7 +203,7 @@ class ShowData():
         x_text_new =[]
         for i in range(num_elements):
             x_text_new.append(x_text[i])
-            
+
         plt.figure()
         plt.title('Monthly performance graph')
         plt.ylabel('%')
