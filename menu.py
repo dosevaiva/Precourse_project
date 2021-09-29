@@ -38,7 +38,8 @@ class Menu():
                 continue
             elif user_option_main_menu == '6':
                 a = self.user_team.monthly_win_loss()
-                self.user_team.data_visual.linechart(a)
+                elements = len(self.user_team.team_row.columns)
+                self.user_team.data_visual.linechart(a, elements)
                 continue
             elif user_option_main_menu == '7':
                 predict= GamePredictor()

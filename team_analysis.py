@@ -14,6 +14,7 @@ class Team():
             self.data = pd.read_csv("nba_test.csv")
             self.data = self.data.fillna('1-100')
             self.team_row=self.data.loc[self.data['Team']== self.team_name]
+        
 
             #print(self.team_row)
 
@@ -43,8 +44,9 @@ class Team():
 
     def monthly_win_loss(self):
         months = []
-        new_range = 
-        for i in range(16,24):
+        end_range = len(self.team_row.columns)
+        print(end_range)
+        for i in range(16, end_range):
             month = self.win_loss_ratio(i)[2]
             months.append(month)
         return months
@@ -208,12 +210,17 @@ class ShowData():
         ax1.set_title(title)
         plt.savefig('plots.png')
 
-    def linechart(self,y):
-        x = np.linspace(1,100,8)
+    def linechart(self,y,elements):
+        num_elements = elements - 16
+        x = np.linspace(1,100,num_elements)
         x_text = ['Oct', 'Nov','Dec','Jan','Feb','Mar','Jul','Aug']
+        x_text_new =[]
+        for i in range(num_elements):
+            x_text_new.append(x_text[i])
+            
         plt.figure()
         plt.title('Monthly performance graph')
         plt.ylabel('%')
-        plt.xticks(x,x_text)
+        plt.xticks(x,x_text_new)
         plt.plot(x,y)
         plt.savefig('plots.png')
