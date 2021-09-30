@@ -192,6 +192,8 @@ class ShowData():
         ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         ax1.set_title(title)
         plt.savefig('plots.png')
+        plt.show()
+        plt.close()
 
     def linechart(self,y,elements):
         num_elements = elements - 16
@@ -207,3 +209,5 @@ class ShowData():
         plt.xticks(x,x_text_new)
         plt.plot(x,y)
         plt.savefig('plots.png')
+        plt.show()
+        plt.close()
