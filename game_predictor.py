@@ -1,5 +1,5 @@
 import pandas as pd
-from  team_analysis import *
+from  team import *
 
 class GamePredictor():
     def __init__(self,team, game, opp_team):

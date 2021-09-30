@@ -1,5 +1,5 @@
 from get_data import *
-from team_analysis import *
+from team import *
 from menu import *
 
 print("-----------------------------------------------------------------------------------------")

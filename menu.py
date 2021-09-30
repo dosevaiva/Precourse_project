@@ -1,6 +1,6 @@
 from show_data import ShowData
 from game_predictor import GamePredictor
-from team_analysis import *
+from team import *
 from show_data import *
 
 class Menu():

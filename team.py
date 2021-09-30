@@ -1,7 +1,4 @@
-from numpy.lib.function_base import _piecewise_dispatcher
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 
 
 #define a class Team, which takes team name and performes the analysis
