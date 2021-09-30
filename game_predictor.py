@@ -41,5 +41,5 @@ class GamePredictor():
             self.c = (self.team_data['Road Success Ratio'].values + self.opp_team_data['Home Loses Ratio'].values) - (self.team_data['Road Success Ratio'].values * self.opp_team_data['Home Loses Ratio'].values)
 
         print("")
-        print(f'The {self.team.team_name} will win with a probability of {round(self.c[0],2)*100} % against the {self.opp_team}')
+        print(f' The {self.team.team_name} will win with a probability of {round(self.c[0],2)*100} % against the {self.opp_team}')
         print("-----------------------------------------------------------------------------------------")

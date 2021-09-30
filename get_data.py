@@ -5,25 +5,13 @@ import numpy as np
 
 class GetData():
 
-    def __init__(self):
-        while True:
-            self.season = input(" Please enter the year of the season: ")
-            if self.season.isdigit():
-                if int(self.season) > 2020 or int(self.season) < 2005:
-                    print('Please input a year between 2005 and 2020!')
-                    continue
-                else:
-                    self.url = 'https://www.basketball-reference.com/leagues/NBA_{}_standings.html'.format(self.season)
-                break
-            else:
-                print('Please input a year between 2005 and 2020!')
-                continue
+    def __init__(self,season,url):
+        self.season = season
+        self.url = url
 
+    def html_code_parsing(self):
 
-    def html_code_stored_in_a_file(self):
-        url=self.url
-
-        source=requests.get(url).text
+        source=requests.get(self.url).text
         soup=BeautifulSoup(source, 'lxml')
 
         file=open('html_code.html','w', encoding='UTF-8')

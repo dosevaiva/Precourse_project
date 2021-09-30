@@ -1,6 +1,5 @@
 from game_predictor import GamePredictor
 from team_analysis import *
-import time
 
 class Menu():
 
@@ -35,7 +34,6 @@ class Menu():
         while True:
             print('\n What metric do you want to see? \n\n 1. Win/loss ratio \n 2. Overall statistics \n 3. Monthly graph \n\n OR enter 4 if you want to access the Game Result Predictor \n\n OR type Q to quit \n')
             user_option_main_menu = input(" Enter here the number corresponding to your choice: ").lower()
-            time.sleep(2)
 
             if user_option_main_menu == '1':
                 print('\n Which win ratio do you want to see? \n\n 1. Overall \n 2. Home \n 3. Road \n\n OR press any button to go back to the main menu!\n')
@@ -44,13 +42,11 @@ class Menu():
                     user_option_sub_menu = int(user_option_sub_menu)
                     if user_option_sub_menu < 1 or user_option_sub_menu > 3:
                         print(' This is not a valid option!')
-                        time.sleep(1)
                     else:
                         a = self.user_team.win_loss_ratio(user_option_sub_menu)
                         self.user_team.data_visual.piechart_win_loss_ratio(a[0], a[1], a[3])
                         print("\n -> See graph in plots.png \n ")
                         print("-----------------------------------------------------------------------------------------")
-                        time.sleep(1)
                 except (TypeError, ValueError) as e:
                     print(' Not a valid option. Choose again')
                     continue
@@ -63,19 +59,23 @@ class Menu():
                     if user_option_sub_menu == '1':
                         self.user_team.conference_statistics()
                         print("-----------------------------------------------------------------------------------------")
-                        time.sleep(1)
+                        input(" Press any key to go back to the main menu: ")
+                        continue
                     elif user_option_sub_menu == '2':
                         self.user_team.division_statistics()
                         print("-----------------------------------------------------------------------------------------")
-                        time.sleep(1)
+                        input(" Press any key to go back to the main menu: ")
+                        continue
                     elif user_option_sub_menu == '3':
                         self.user_team.all_star_statistics()
                         print("-----------------------------------------------------------------------------------------")
-                        time.sleep(1)
+                        input(" Press any key to go back to the main menu: ")
+                        continue
                     elif user_option_sub_menu == '4':
                         self.user_team.game_margin_statistics()
                         print("-----------------------------------------------------------------------------------------")
-                        time.sleep(1)
+                        input(" Press any key to go back to the main menu: ")
+                        continue
                 except (TypeError, ValueError) as e:
                     print(' Not a valid option. Choose again')
                     continue
@@ -86,7 +86,6 @@ class Menu():
                 self.user_team.data_visual.linechart(a, elements)
                 print("\n -> See graph in plots.png \n ")
                 print("-----------------------------------------------------------------------------------------")
-                time.sleep(1)
                 continue
 
             elif user_option_main_menu == '4':
@@ -102,6 +101,9 @@ class Menu():
                     opp_team = input(" Enter the opposing team name or press 'T' to show all teamnames: ").title()
                     self.user_team_opp = Team(opp_team)
                     #print(self.team_row)
+                    if self.user_team_opp.team_name == self.user_team.team_name:
+                        print(" \n You cannot choose twice the same team. Please try again. \n")
+                        continue
                     if opp_team == 'T':
                         self.print_team_names()
                     elif len(self.user_team_opp.team_row) == 0:
@@ -112,7 +114,7 @@ class Menu():
 
                 predict= GamePredictor(self.user_team, game, opp_team)
                 predict.predict()
-                time.sleep(1)
+                input(" Press any key to go back to the main menu: ")
                 continue
 
             elif user_option_main_menu =='q':
