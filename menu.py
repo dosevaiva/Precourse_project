@@ -1,5 +1,7 @@
+from show_data import ShowData
 from game_predictor import GamePredictor
 from team_analysis import *
+from show_data import *
 
 class Menu():
 
@@ -9,6 +11,7 @@ class Menu():
             self.team_name = input("\n Please enter the official name of an NBA team OR press 'T' to show all teamnames: ").title()
             print("-----------------------------------------------------------------------------------------")
             self.user_team = Team(self.team_name)
+            self.visual = ShowData()
             #print(self.team_row)
             if self.team_name =='T':
                 self.print_team_names()
@@ -44,7 +47,7 @@ class Menu():
                         print(' This is not a valid option!')
                     else:
                         a = self.user_team.win_loss_ratio(user_option_sub_menu)
-                        self.user_team.data_visual.piechart_win_loss_ratio(a[0], a[1], a[3])
+                        self.visual.piechart_win_loss_ratio(a[0], a[1], a[3])
                         print("\n -> See graph in plots.png \n ")
                         print("-----------------------------------------------------------------------------------------")
                 except (TypeError, ValueError) as e:
@@ -75,7 +78,7 @@ class Menu():
             elif user_option_main_menu == '3':
                 a = self.user_team.monthly_win_loss()
                 elements = len(self.user_team.team_row.columns)
-                self.user_team.data_visual.linechart(a, elements)
+                self.visual.linechart(a, elements)
                 print("\n -> See graph in plots.png \n ")
                 print("-----------------------------------------------------------------------------------------")
                 continue
