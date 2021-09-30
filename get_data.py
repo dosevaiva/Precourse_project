@@ -8,12 +8,17 @@ class GetData():
     def __init__(self):
         while True:
             self.season = input(" Please enter the year of the season: ")
-            if int(self.season) > 2020 or int(self.season) < 2000:
-                print('Please input a year between 2000 and 2020!')
-                continue
-            else:
-                self.url = 'https://www.basketball-reference.com/leagues/NBA_{}_standings.html'.format(self.season)
+            if self.season.isdigit():
+                if int(self.season) > 2020 or int(self.season) < 2005:
+                    print('Please input a year between 2005 and 2020!')
+                    continue
+                else:
+                    self.url = 'https://www.basketball-reference.com/leagues/NBA_{}_standings.html'.format(self.season)
                 break
+            else:
+                print('Please input a year between 2005 and 2020!')
+                continue
+
 
     def html_code_stored_in_a_file(self):
         url=self.url

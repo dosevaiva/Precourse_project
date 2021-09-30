@@ -6,16 +6,29 @@ class Menu():
     def __init__(self):
         #put this is menu
         while True:
-            self.team_name = input("\n Please enter the official name of an NBA team: ").title()
+            self.team_name = input("\n Please enter the official name of an NBA team OR press 'T' to show all teamnames: ").title()
             print("-----------------------------------------------------------------------------------------")
             self.user_team = Team(self.team_name)
             #print(self.team_row)
+            if self.team_name =='T':
+                self.print_team_names()
 
-            if len(self.user_team.team_row) == 0:
+            elif len(self.user_team.team_row) == 0:
                 print(' This is not a valid team name!')
                 continue
+
             else:
                 break
+
+    def print_team_names(self):
+        
+        teams = []
+        for i in range (len(self.user_team.data.index)):
+            value = self.user_team.data.iat[i,0]
+            teams.append(value)
+        print('')
+        print('/ '.join(teams))
+        print('')   
 
     def user_menu(self):
         while True:
@@ -76,10 +89,12 @@ class Menu():
                         continue
 
                 while True:
-                    opp_team = input(" Enter the opposing team name: ").title()
-                    self.user_team = Team(opp_team)
+                    opp_team = input(" Enter the opposing team nameor press 'T' to show all teamnames: ").title()
+                    self.user_team_opp = Team(opp_team)
                     #print(self.team_row)
-                    if len(self.user_team.team_row) == 0:
+                    if opp_team == 'T':
+                        self.print_team_names()
+                    elif len(self.user_team_opp.team_row) == 0:
                         print(' This is not a valid team name!')
                         continue
                     else:
