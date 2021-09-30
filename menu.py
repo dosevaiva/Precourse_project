@@ -23,6 +23,8 @@ class Menu():
             else:
                 break
 
+        self.user_menu()
+
     def print_team_names(self):
 
         teams = []

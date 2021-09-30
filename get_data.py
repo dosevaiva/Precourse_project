@@ -8,6 +8,10 @@ class GetData():
     def __init__(self,season,url):
         self.season = season
         self.url = url
+        self.html_code_parsing()
+        self.replace()
+        self.create_csv()
+
 
     def html_code_parsing(self):
 
@@ -79,3 +83,4 @@ class GetData():
 
         #close the file
         csv_file.close()
+

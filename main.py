@@ -22,8 +22,5 @@ while True:
         continue
 
 data = GetData(season,url)
-data.html_code_parsing()
-data.replace()
-data.create_csv()
 user_menu = Menu()
-user_menu.user_menu()
+
